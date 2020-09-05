@@ -51,6 +51,7 @@ class SimCom
  	void callNumber(char* number);
  	uint8_t getCallStatus();
  	bool hangoffCall();
+ 	bool sendSms(char* number,char* text)
 }
 
 #endif

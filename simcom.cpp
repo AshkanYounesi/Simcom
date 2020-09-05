@@ -178,7 +178,28 @@ bool SimCom::hangoffCall(){
 }
 
 /***************************************************/
+bool SimCom::sendSms(char* number,char* text){
 
+    SIM.print (F("AT+CMGF=1\r")); //set sms to text mode  
+    _buffer=_readSerial();
+    SIM.print (F("AT+CMGS=\""));  // command to send sms
+    SIM.print (number);           
+    SIM.print(F("\"\r"));       
+    _buffer=_readSerial(); 
+    SIM.print (text);
+    SIM.print ("\r"); 
+	//change delay 100 to readserial	
+    _buffer=_readSerial();
+    SIM.print((char)26);
+    _buffer=_readSerial();
+    //expect CMGS:xxx   , where xxx is a number,for the sending sms.
+    if (((_buffer.indexOf("CMGS") ) != -1 ) ){
+      return true;
+    }
+    else {
+      return false;
+    }
+}
 
 /***************************************************/
 
