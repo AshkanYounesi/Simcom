@@ -397,7 +397,14 @@ bool SimCom::WhiteList(char mode,char index,char*number)
 }
 
 /***************************************************/
-
+bool SimCom::SimInserted(void)
+{ 
+  SIM.print (F("AT+CSMINS"));
+  SIM.print(F("\r\n")); 
+  _buffer=_readSerial();
+  if ( (_buffer.indexOf("OK")!=-1)) return true;  
+  else return false;
+}
 
 /***************************************************/
 

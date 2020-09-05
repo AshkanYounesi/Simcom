@@ -62,6 +62,7 @@ class SimCom
  	void PowerOff(void);
  	bool MicSwitch(char mode);
  	bool WhiteList(char mode,char index,char*number);
+ 	bool SimInserted(void);
 };
 
 #pragma used-
