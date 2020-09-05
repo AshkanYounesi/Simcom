@@ -4,7 +4,7 @@
 SoftwareSerial SIM(RX_PIN,TX_PIN);
 
 
-void SimCom::begin(){
+void SimCom::init(){
 	SIM.begin(9600);
 	_buffer.reserve(255); //reserve memory to prevent intern fragmention
 }
