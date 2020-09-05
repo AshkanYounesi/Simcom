@@ -277,7 +277,16 @@ void SimCom::RTCtime(int *day,int *month, int *year,int *hour,int *minute, int *
 }
 
 /***************************************************/
+//Get the time  of the base of GSM
+String SimCom::dateNet() {
+	SIM.print(F("AT+CIPGSMLOC=2,1\r\n "));
+	_buffer=_readSerial();
 
+	if (_buffer.indexOf("OK")!=-1 )
+		return _buffer.substring(_buffer.indexOf(":")+2,(_buffer.indexOf("OK")-4));
+	else
+		return "0";      
+}
 
 /***************************************************/
 
