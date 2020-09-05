@@ -47,6 +47,7 @@ class SimCom
  	void callNumber(char* number);
  	char Recall(void);
  	void RejectCall(void);
+ 	bool sim_is_call(void);
  	uint8_t getCallStatus();
  	bool hangoffCall();
  	bool sendSms(char* number,char* text);

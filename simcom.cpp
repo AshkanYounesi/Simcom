@@ -179,6 +179,18 @@ void SimCom::RejectCall(void)
   SIM.print (number);
   SIM.print(F(";\r\n"));
 }
+
+/***************************************************/
+bool SimCom::sim_is_call(void)
+{
+  if(RING_PIN==0)
+    return 0;   
+  else if(RING_PIN==1) 
+  {
+    return 1;          
+  }
+}
+
 /***************************************************/
 uint8_t SimCom::getCallStatus(){
 /*
