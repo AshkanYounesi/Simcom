@@ -55,6 +55,7 @@ class SimCom
  	String getNumberSms(uint8_t index);
  	String readSms(uint8_t index);
  	bool deleteSms(bool Mode);
+ 	void RTCtime(int *day,int *month, int *year,int *hour,int *minute, int *second);
 }
 
 #endif

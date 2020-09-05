@@ -241,7 +241,7 @@ String SimCom::readSms(uint8_t index){
 *		5 Delete all received SMS
 *		6 Delete all SMS
 */
-bool Sim800l::deleteSms(bool Mode){ 
+bool SimCom::deleteSms(bool Mode){ 
 	SIM.print (F("AT+CMGF=0\r")); 
 	SIM.print (F("at+cmgda=\""));  
 	SIM.print (Mode);           
@@ -254,6 +254,27 @@ bool Sim800l::deleteSms(bool Mode){
 }
 
 /***************************************************/
+void SimCom::RTCtime(int *day,int *month, int *year,int *hour,int *minute, int *second)
+{
+	SIM.print(F("at+cclk?\r\n"));
+	// if respond with ERROR try one more time. 
+	_buffer=_readSerial();
+	if ((_buffer.indexOf("ERR"))!=-1)
+	{
+		delay(50);
+		SIM.print(F("at+cclk?\r\n"));
+	} 
+	if ((_buffer.indexOf("ERR"))==-1)
+	{
+		_buffer=_buffer.substring(_buffer.indexOf("\"")+1,_buffer.lastIndexOf("\"")-1);  
+		*year=_buffer.substring(0,2).toInt();
+		*month= _buffer.substring(3,5).toInt();
+		*day=_buffer.substring(6,8).toInt();
+		*hour=_buffer.substring(9,11).toInt();
+		*minute=_buffer.substring(12,14).toInt();
+		*second=_buffer.substring(15,17).toInt();
+	}
+}
 
 /***************************************************/
 
@@ -263,13 +284,15 @@ bool Sim800l::deleteSms(bool Mode){
 
 /***************************************************/
 
-/***************************************************/
-
 
 /***************************************************/
 
 
 /***************************************************/
+
+
+/***************************************************/
+
 
 /***************************************************/
 
