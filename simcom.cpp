@@ -382,7 +382,19 @@ bool SimCom::MicSwitch(char mode)
 }
 
 /***************************************************/
-
+bool SimCom::WhiteList(char mode,char index,char*number)
+{
+  SIM.print (F("AT+CWHITELIST="));
+  SIM.print (mode);
+  SIM.print(F(",")); 
+  SIM.print (index);
+  SIM.print(F(","));
+  SIM.print (number);
+  SIM.print(F("\r\n")); 
+  _buffer=_readSerial();
+  if ( (_buffer.indexOf("OK")!=-1)) return true;  
+  else return false;
+}
 
 /***************************************************/
 

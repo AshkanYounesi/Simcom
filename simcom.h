@@ -61,6 +61,7 @@ class SimCom
  	bool Microphone(char channel ,int gainlevel);
  	void PowerOff(void);
  	bool MicSwitch(char mode);
+ 	bool WhiteList(char mode,char index,char*number);
 };
 
 #pragma used-
