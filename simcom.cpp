@@ -136,7 +136,13 @@ bool SimCom::Baud_rate(char* baud_rate)
 }
 
 /***************************************************/
-
+bool SimCom::answerCall(){
+   SIM.print (F("ATA\r\n"));
+   _buffer=_readSerial();
+   //Response in case of data call, if successfully connected 
+   if ( (_buffer.indexOf("OK") )!=-1 ) return true;  
+   else return false;
+}
 
 /***************************************************/
 

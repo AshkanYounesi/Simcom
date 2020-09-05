@@ -47,6 +47,7 @@ class SimCom
  	void setPhoneFunctionality();
  	void signalQuality();
  	bool Baud_rate(char* baud_rate);
+ 	bool answerCall();
 }
 
 #endif
