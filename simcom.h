@@ -49,6 +49,7 @@ class SimCom
  	bool Baud_rate(char* baud_rate);
  	bool answerCall();
  	void callNumber(char* number);
+ 	uint8_t getCallStatus();
 }
 
 #endif

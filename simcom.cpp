@@ -152,6 +152,21 @@ void  SimCom::callNumber(char* number){
 }
 
 /***************************************************/
+uint8_t SimCom::getCallStatus(){
+/*
+  values of return:
+ 
+ 0 Ready (MT allows commands from TA/TE)
+ 2 Unknown (MT is not guaranteed to respond to tructions)
+ 3 Ringing (MT is ready for commands from TA/TE, but the ringer is active)
+ 4 Call in progress
+
+*/
+  SIM.print (F("AT+CPAS\r\n"));
+  _buffer=_readSerial();  
+  return _buffer.substring(_buffer.indexOf("+CPAS: ")+7,_buffer.indexOf("+CPAS: ")+9).toInt();
+
+}
 
 
 /***************************************************/
