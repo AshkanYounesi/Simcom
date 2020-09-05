@@ -43,8 +43,9 @@ class SimCom
 
  	void init();	
  	void reset(); 
- 	int SimCom::char2int(char A);
- 	void SimCom::setPhoneFunctionality();
+ 	int char2int(char A);
+ 	void setPhoneFunctionality();
+ 	void signalQuality();
 }
 
 #endif
