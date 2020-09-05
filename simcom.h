@@ -53,6 +53,7 @@ class SimCom
  	bool hangoffCall();
  	bool sendSms(char* number,char* text);
  	String getNumberSms(uint8_t index);
+ 	String readSms(uint8_t index);
 }
 
 #endif
