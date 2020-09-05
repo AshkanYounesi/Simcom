@@ -165,6 +165,14 @@ void  SimCom::callNumber(char* number){
 }
 
 /***************************************************/
+char SimCom::Recall(void)
+{ 
+	SIM.print (F("ATDL"));
+	SIM.print (number);
+	SIM.print(F(";\r\n"));
+}
+
+/***************************************************/
 uint8_t SimCom::getCallStatus(){
 /*
   values of return:

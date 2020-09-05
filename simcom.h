@@ -45,6 +45,7 @@ class SimCom
  	bool Baud_rate(char* baud_rate);
  	bool answerCall();
  	void callNumber(char* number);
+ 	char Recall(void);
  	uint8_t getCallStatus();
  	bool hangoffCall();
  	bool sendSms(char* number,char* text);
