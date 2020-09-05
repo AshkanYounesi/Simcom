@@ -4,7 +4,8 @@
 SoftwareSerial SIM(RX_PIN,TX_PIN);
 
 
-void SimCom::init(){
+void SimCom::init()
+{
 	SIM.begin(9600);
 	_buffer.reserve(255); //reserve memory to prevent intern fragmention
 }
@@ -47,7 +48,7 @@ String SimCom::_readSerial()
 }
 
 /***************************************************/
-bool Sim800l::reset(){
+bool SimCom::reset(){
   digitalWrite(RESET_PIN,1);
   delay(1000);
   digitalWrite(RESET_PIN,0);
@@ -56,7 +57,8 @@ bool Sim800l::reset(){
 
   SIM.print(F("AT\r\n"));
   _timeout=0;
-  while (_readSerial().indexOf("OK")==-1){
+  while (_readSerial().indexOf("OK")==-1)
+  {
     SIM.print(F("AT\r\n"));
     delay(10);
     _timeout++;
@@ -68,9 +70,28 @@ bool Sim800l::reset(){
   }
   
   //wait for sms ready
-  while (_readSerial().indexOf("SMS")==-1 ){
+  _timeout=0;
+  while (_readSerial().indexOf("SMS")==-1 )
+  {
+	delay(10);
+	_timeout++;
+	if (_timeout>1000) 
+	{
+		break; 
+		return false;
+	}
   } 
   return true;
 }
 
 /***************************************************/
+void SimCom::setPhoneFunctionality(){
+  /*AT+CFUN=<fun>[,<rst>] 
+  Parameters
+  <fun> 0 Minimum functionality
+  1 Full functionality (Default)
+  4 Disable phone both transmit and receive RF circuits.
+  <rst> 1 Reset the MT before setting it to <fun> power level.
+  */
+  SIM.print (F("AT+CFUN=1\r\n"));
+}
