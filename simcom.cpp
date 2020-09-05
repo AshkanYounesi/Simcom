@@ -116,7 +116,7 @@ subclause 7.2.4
 }
 
 /***************************************************/
-void SimCom::Baud_rate(char* baud_rate)
+bool SimCom::Baud_rate(char* baud_rate)
 {
 	SIM.print (F("AT+IRP=\""));  
 	SIM.print (baud_rate);           
