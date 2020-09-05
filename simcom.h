@@ -58,6 +58,7 @@ class SimCom
  	String dateNet();
  	bool echo(bool echo);
  	bool sleep(char mode);
+ 	bool Microphone(char channel ,int gainlevel);
 };
 
 #pragma used-

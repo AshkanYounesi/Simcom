@@ -351,7 +351,17 @@ bool SimCom::sleep(char mode)
 }
 
 /***************************************************/
-
+bool SimCom::Microphone(char channel ,int gainlevel)
+{
+  SIM.print (F("AT+AT+CMIC="));
+  SIM.print (channel);
+  SIM.print(F(",")); 
+  SIM.print (gainlevel);
+  SIM.print(F("\r\n")); 
+  _buffer=_readSerial();
+  if ( (_buffer.indexOf("OK")!=-1)) return true;  
+  else return false;
+}
 
 /***************************************************/
 
