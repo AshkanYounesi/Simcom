@@ -302,8 +302,14 @@ String SimCom::dateNet() {
 }
 
 /***************************************************/
-
-
+bool SimCom::echo(bool echo)
+{
+	printf("ATE%c%c",echo,ENTER);  
+	//Response in case of data call, if successfully connected 
+	_buffer=_readSerial();
+	if ( (_buffer.indexOf("OK")!=-1)) return true;  
+	else return false;
+}
 /***************************************************/
 
 

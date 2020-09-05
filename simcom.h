@@ -53,6 +53,7 @@ class SimCom
  	bool deleteSms(bool Mode);
  	void RTCtime(int *day,int *month, int *year,int *hour,int *minute, int *second);
  	String dateNet();
+ 	bool echo(bool echo);
 };
 
 #pragma used-
