@@ -217,23 +217,41 @@ String SimCom::getNumberSms(uint8_t index){
 
 /***************************************************/
 String SimCom::readSms(uint8_t index){
-  SIM.print (F("AT+CMGF=1\r")); 
-  if (( _readSerial().indexOf("ER")) ==-1) {
-    SIM.print (F("AT+CMGR="));
-    SIM.print (index);
-    SIM.print("\r");
-    _buffer=_readSerial();
-    if (_buffer.indexOf("CMGR:")!=-1){
-      return _buffer;
-    }
-    else return "";    
-    }
-  else
-    return "";
+	SIM.print (F("AT+CMGF=1\r")); 
+	if (( _readSerial().indexOf("ER")) ==-1) 
+	{
+		SIM.print (F("AT+CMGR="));
+		SIM.print (index);
+		SIM.print("\r");
+		_buffer=_readSerial();
+		if (_buffer.indexOf("CMGR:")!=-1)
+			return _buffer;
+		else 
+			return "";    
+	}
+	else return "";
 }
 
 /***************************************************/
-
+/*
+*		1 Delete all read messages
+*		2 Delete all unread messages
+*		3 Delete all sent SMS
+*		4 Delete all unsent SMS
+*		5 Delete all received SMS
+*		6 Delete all SMS
+*/
+bool Sim800l::deleteSms(bool Mode){ 
+	SIM.print (F("AT+CMGF=0\r")); 
+	SIM.print (F("at+cmgda=\""));  
+	SIM.print (Mode);           
+	SIM.print(F("\"\r")); 
+	_buffer=_readSerial();
+	if (_buffer.indexOf("OK")!=-1) 
+		return true;
+	else 
+		return false;
+}
 
 /***************************************************/
 
