@@ -21,10 +21,6 @@
 #define RX_PIN 			10
 #define TX_PIN 			11
 
-#define CTRL_Z 			0x1a
-#define ENTER  			0x0d
-#define double_quote 	0x22
-
 #define RING_PIN  		2
 #define RESET_PIN  		3
 #define POWER_PIN 		4
@@ -42,7 +38,7 @@ class SimCom
   public:
 
  	void init();	
- 	void reset(); 
+ 	bool reset(); 
  	int char2int(char A);
  	void setPhoneFunctionality();
  	void signalQuality();
@@ -57,6 +53,8 @@ class SimCom
  	bool deleteSms(bool Mode);
  	void RTCtime(int *day,int *month, int *year,int *hour,int *minute, int *second);
  	String dateNet();
-}
+};
+
+#pragma used-
 
 #endif

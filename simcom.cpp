@@ -39,7 +39,7 @@ String SimCom::_readSerial()
     if (_timeout > 1000)
     {
     	break; 
-    	return false;
+    	return "0";
     }
   }
   if (SIM.available()) {
