@@ -340,7 +340,15 @@ bool SimCom::echo(bool echo)
 	else return false;
 }
 /***************************************************/
-
+bool SimCom::sleep(char mode)
+{
+  SIM.print (F("AT+CSCLK="));
+  SIM.print (mode);
+  SIM.print(F("\r\n")); 
+  _buffer=_readSerial();
+  if ( (_buffer.indexOf("OK")!=-1)) return true;  
+  else return false;
+}
 
 /***************************************************/
 

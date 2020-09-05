@@ -57,6 +57,7 @@ class SimCom
  	void RTCtime(int *day,int *month, int *year,int *hour,int *minute, int *second);
  	String dateNet();
  	bool echo(bool echo);
+ 	bool sleep(char mode);
 };
 
 #pragma used-
