@@ -364,7 +364,11 @@ bool SimCom::Microphone(char channel ,int gainlevel)
 }
 
 /***************************************************/
-
+void SimCom:: PowerOff(void)
+{  
+  SIM.print (F("AT+CPOWD"));
+  SIM.print(F("\r\n"));
+}
 
 /***************************************************/
 
