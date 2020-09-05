@@ -170,7 +170,12 @@ uint8_t SimCom::getCallStatus(){
 
 
 /***************************************************/
-
+bool SimCom::hangoffCall(){
+  SIM.print (F("ATH\r\n"));
+  _buffer=_readSerial();
+  if ( (_buffer.indexOf("OK") ) != -1) return true;
+  else return false;
+}
 
 /***************************************************/
 

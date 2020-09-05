@@ -50,6 +50,7 @@ class SimCom
  	bool answerCall();
  	void callNumber(char* number);
  	uint8_t getCallStatus();
+ 	bool hangoffCall();
 }
 
 #endif
