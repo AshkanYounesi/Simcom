@@ -116,11 +116,23 @@ subclause 7.2.4
 }
 
 /***************************************************/
-char SimCom::Baud_rate(char* baud_rate)
+void SimCom::Baud_rate(char* baud_rate)
 {
 	SIM.print (F("AT+IRP=\""));  
 	SIM.print (baud_rate);           
 	SIM.print(F("\"\r"));  
+	_timeout=0;
+	while (_readSerial().indexOf("OK")==-1)
+	{
+		delay(10);
+		_timeout++;
+		if (_timeout>1000) 
+		{
+			break; 
+			return false;
+		}
+	}
+	return true;
 }
 
 /***************************************************/
