@@ -8,6 +8,19 @@ void SimCom::init()
 {
 	SIM.begin(9600);
 	_buffer.reserve(255); //reserve memory to prevent intern fragmention
+	SIM.print(F("AT\r\n"));
+	_timeout=0;
+	while (_readSerial().indexOf("OK")==-1)
+	{
+		SIM.print(F("AT\r\n"));
+		delay(10);
+		_timeout++;
+		if (_timeout>1000) 
+		{
+			break; 
+			return false;
+		}
+	}
 }
 
 /***************************************************/
