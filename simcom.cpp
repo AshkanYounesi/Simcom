@@ -145,7 +145,11 @@ bool SimCom::answerCall(){
 }
 
 /***************************************************/
-
+void  SimCom::callNumber(char* number){
+  SIM.print (F("ATD"));
+  SIM.print (number);
+  SIM.print(F(";\r\n"));
+}
 
 /***************************************************/
 

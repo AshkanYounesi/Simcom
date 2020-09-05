@@ -48,6 +48,7 @@ class SimCom
  	void signalQuality();
  	bool Baud_rate(char* baud_rate);
  	bool answerCall();
+ 	void callNumber(char* number);
 }
 
 #endif
